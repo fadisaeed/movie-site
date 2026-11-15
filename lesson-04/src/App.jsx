@@ -14,7 +14,6 @@ function App() {
   const genres = movies
     .map(movie => movie.genre)
     .filter((genre, index, all) => all.indexOf(genre) === index);
-
   let shownMovies = movies;
   if (onlyAvailable) {
     shownMovies = shownMovies.filter(movie => movie.available);
@@ -31,6 +30,11 @@ function App() {
 
   function showMore() {
     setVisibleCount(visibleCount + 4);
+  }
+
+  function showless()
+  {
+      setVisibleCount(4);
   }
 
   return (
@@ -56,7 +60,10 @@ function App() {
 
           <button
             className={selectedGenre === "all" ? "btn btn--active" : "btn"}
-            onClick={() => setSelectedGenre("all")}
+           onClick={() => {
+            setSelectedGenre("all");
+             showless();
+            }}
           >
             הכל
           </button>
@@ -64,7 +71,9 @@ function App() {
             <button
               key={genre}
               className={selectedGenre === genre ? "btn btn--active" : "btn"}
-              onClick={() => setSelectedGenre(genre)}
+              onClick={() =>{
+                setSelectedGenre(genre);
+              }}
             >
               {genre}
             </button>

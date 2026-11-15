@@ -4,13 +4,23 @@ import "./MovieCard.css";
 function MovieCard({ title, year, duration, genre, rating, poster, available }) {
   const [liked, setLiked] = useState(false);
   const [count, setCount] = useState(0);
+  const [starcount,setstarcount] = useState(0);
 
+const stars=[1,2,3,4,5];
   function handleLike() {
     setLiked(!liked);
   }
-
+function countingstars(star)
+{
+  if(star==starcount)
+    setstarcount(0);
+  else
+  setstarcount(star);
+}
   return (
     <article className="movie-card">
+      <div>{stars.map(star=><button key={star} onClick={()=>countingstars(star)}>{star<=starcount?"★":"☆"}</button>)}</div>
+
 <button onClick={() => setCount(count + 1)}>{count}</button>
       <div className="movie-card__poster">
         <img src={poster} alt={title} />
